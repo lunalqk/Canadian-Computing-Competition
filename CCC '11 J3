@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+     Scanner read = new Scanner(System.in);
+        int a = read.nextInt();
+        int b = read.nextInt(); 
+
+        int count = 2;
+        int c = a;
+        int d = b;
+        int e = 0;
+       
+        while(c - d >= 0){
+            e = c - d;
+            c = d;
+            d = e;
+            count ++;
+        }
+        System.out.println(count);
+        
+    }
+}
