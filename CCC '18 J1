@@ -1,0 +1,18 @@
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+    Scanner read = new Scanner(System.in); 
+        int a = read.nextInt();
+        int b = read.nextInt();
+        int c = read.nextInt();
+        int d = read.nextInt();
+
+        if ((a == 8 || a == 9) && b == c && (d == 8 || d == 9)){
+            System.out.print("ignore");
+        }else{
+            System.out.print("answer");
+        }
+    }
+}
