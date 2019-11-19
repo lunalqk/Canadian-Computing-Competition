@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+         Scanner read = new Scanner(System.in);
+        int a = read.nextInt();
+        int b = read.nextInt(); 
+        int c = read.nextInt();  
+
+        if (a+b+c == 180 && a == b & a == c && b == c){
+            System.out.println("Equilateral");
+        }else if (a+b+c == 180 && (a == b || a == c|| b == c)){
+            System.out.println("Isosceles");
+        }else if (a+b+c == 180 && (a != b || a != c|| b != c)){
+            System.out.println("Scalene");
+        }else{
+            System.out.println("Error");
+        }
+    }
+}
