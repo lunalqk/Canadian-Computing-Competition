@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner read = new Scanner(System.in);
+
+        int k = read.nextInt();
+        read.nextLine();
+        String word = read.nextLine(); 
+        String ans = "";
+    
+        for (int i = 0; i < word.length(); i++){
+            int S = 3*(i+1)+k;
+            char b = word.charAt(i);
+            int c = (int)b;
+            if (c-S < 65){
+                c = 91-(S-(c-65));
+                b = (char)c; 
+                System.out.print(b);
+            }else{
+                c = c-S;
+                b = (char)c; 
+                System.out.print(b);
+            }
+
+        }
+    }
+
+}
