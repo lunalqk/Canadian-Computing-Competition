@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        int a = read.nextInt();
+        int b = read.nextInt();
+        int c = read.nextInt();
+        int d = read.nextInt();
+        int e = read.nextInt();
+
+        int h = Math.abs(d - b) + Math.abs(c - a);
+
+        if (e < h) {
+            System.out.println("N");
+        } else if (e == h) {
+            System.out.println("Y");
+        } else {
+            if (e % 2 == h % 2) {
+                System.out.println("Y");
+            } else {
+                System.out.println("N");
+            }
+        }
+    }
+}
