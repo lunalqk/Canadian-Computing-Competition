@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner read = new Scanner(System.in); 
+        
+        int [] distance = new int [4];  
+       
+        distance[0] = read.nextInt();
+        distance[1]= read.nextInt();
+        distance[2] = read.nextInt();
+        distance[3] = read.nextInt();
+        
+        for (int i = 0; i < 5; i++){
+            for (int j = 0; j < i;j++){
+                int far = 0;
+                for (int d = j; d < i; d++){
+                    far += distance[d];
+                }
+                System.out.print(far + " ");
+            }
+            System.out.print("0" + " ");
+            for (int j = i+1; j < 5; j++){
+                int far = 0;
+                for (int d = i; d < j; d++){
+                    far += distance[d];
+                }
+                System.out.print(far + " ");
+            }
+            System.out.println();
+        }
+    }
+}
