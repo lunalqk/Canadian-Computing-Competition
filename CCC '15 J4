@@ -1,0 +1,78 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        int a = read.nextInt();
+        ArrayList<String> and = new ArrayList<String>();
+        ArrayList <Integer> rew = new ArrayList<Integer>();
+        ArrayList <Integer> harry = new ArrayList<Integer>();
+        ArrayList <Integer> chen = new ArrayList<Integer>();
+
+        //getting inputs
+        for (int i = 0; i < a; i++){
+            String b = read.next();
+            int c = read.nextInt();
+            
+            if (!b.equals("W")){
+                and.add(b);
+                rew.add(c);
+                if (!harry.contains(c)){
+                    harry.add(c);
+                }
+            }else{
+                for (int j = 0; j < c-1; j++){
+                    and.add(b);
+                    rew.add(0);
+                }
+            }
+        }
+        ////////////
+
+        int l = and.size();
+
+        Collections.sort(harry);
+
+
+        /////calc
+        for (int z = 0; z < harry.size(); z++){
+            int mich = harry.get(z);
+            int ael = 0;
+            boolean state = false;
+            
+            for(int i = 0; i < l; i++){
+                String t1 = and.get(i);
+                int t2 = rew.get(i); 
+
+                if (t2 == mich && t1.equals("R")){
+                    state = true;
+                } 
+
+                if (t2 == mich && t1.equals("S")){
+                    state = false;
+                }
+
+                if (state){
+                    ael++;
+                }
+            }
+        
+            if (state == false){
+                chen.add(ael);
+            }else{
+                chen.add(-1);
+            }
+        }
+        //////////.././//
+
+        /////p[rint]
+        for(int i = 0; i < chen.size(); i++){
+            System.out.println(harry.get(i) + " " + chen.get(i));
+        }
+        ///////
+
+    }
+
+    
+}
