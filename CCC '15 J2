@@ -1,0 +1,33 @@
+mport java.util.Scanner;
+
+public class j2{
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        String a = read.nextLine();
+
+        int happy = 0;
+        int sad = 0;
+        for (int i = 0; i < a.length()-2; i++){
+            String temp = a.substring(i,i+3);
+            if (temp.equals(":-)")){
+                happy++;
+            }else if (temp.equals(":-(")){
+                sad++;
+            }
+            //System.out.println("Hello");
+        }
+        
+        //System.out.println("Hello");
+        ///System.out.println(" " + happy + " " + sad);
+        
+        if (happy == 0 && sad  == 0){
+            System.out.println("none");
+        }else if (happy == sad){
+            System.out.println("unsure");
+        }else if (happy > sad){
+            System.out.println("happy");
+        }else if (sad > happy){
+            System.out.println("sad");
+        }
+    }
+}
