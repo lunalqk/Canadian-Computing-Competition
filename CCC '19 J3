@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+         Scanner read = new Scanner(System.in);
+            int n = read.nextInt();
+            String [] str = new String [n];
+            for (int i = 0; i < n; i++){
+                str[i] = read.next(); 
+            }
+         for (int i = 0; i < str.length; i++){
+             int j = 0;
+             while(j < str[i].length()){
+                 int count = 1; 
+                 char l = str[i].charAt(j);
+                 while(j+1 < str[i].length() && 
+                    l == str[i].charAt(j+1)){
+                     j++;
+                     count++;
+                }
+                System.out.print(count + " " + l + " ");
+                j++;
+            }
+            System.out.println();
+         }
+    }
+}
