@@ -1,0 +1,93 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+
+        int n;
+        int A=0;
+        int B=0;
+
+        while((n=read.nextInt()) != 7) {
+            String a = read.next();
+            if(n == 1){
+                if (a.equals("A") ){
+                    A = read.nextInt();
+                }else{
+                    B = read.nextInt();
+                }
+            }else if (n == 2){
+                if (a.equals("A") ){
+                    System.out.println(A);
+                }else{
+                    System.out.println(B);
+                }
+            }else if (n == 3){
+                String death = read.next();
+                if (a.equals("A") ){
+                    if(death.equals("A")){
+                        A = A + A;
+                    }else{
+                        A = A + B;
+                    }
+                }else{
+                    if(death.equals("A")){
+                        B = B + A;
+                    }else{
+                        A = B + B;
+                    }
+                }
+            }else if (n == 4){
+                String death = read.next();
+                if (a.equals("A") ){
+                    if(death.equals("A")){
+                        A = A * A;
+                    }else{
+                        A = A * B;
+                    }
+                }else{
+                    if(death.equals("A")){
+                        B = B * A;
+                    }else{
+                        B = B * B;
+                    }
+                }
+
+            }else if (n == 5){
+                String death = read.next();
+                if (a.equals("A") ){
+                    if(death.equals("A")){
+                        A = A - A;
+                    }else{
+                        A = A - B;
+                    }
+                }else{
+                    if(death.equals("B")){
+                        B = B - B;
+                    }else{
+                        B = B - A;
+                    }
+                }
+            }else{
+                String death = read.next();
+                if (a.equals("A") ){
+                    if(death.equals("A")){
+                        A = A/A;
+                    }else{
+                        A = A/B;
+                    }
+                }else{
+                   if(death.equals("B")){
+                        B = B/B;
+                    }else{
+                        B = B / A;
+                    }
+                }
+            }
+        }
+
+
+        
+    }
+}
