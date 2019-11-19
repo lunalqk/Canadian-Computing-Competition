@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        
+        int a = read.nextInt();
+        int b = read.nextInt();
+        int c = read.nextInt();
+        int d = read.nextInt();
+        int e = read.nextInt();
+        int f = read.nextInt();
+        int ascore = 0;
+        int bscore = 0;
+
+        ascore += a * 3;
+        ascore += b * 2;
+        ascore += c; 
+        bscore += d * 3;
+        bscore += e * 2;
+        bscore += f;
+
+        if (ascore == bscore){
+            System.out.println("T");
+        }else if (ascore > bscore){
+            System.out.println("A");
+        }else{
+            System.out.println("B");
+        }
+    }
+}
