@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        final int SENTINEL = -9999;
+
+        Scanner read = new Scanner(System.in);
+        int K = read.nextInt();
+
+        ArrayList<Integer> A = new ArrayList<Integer>();
+
+        for (int i = 1; i <= K; i++){
+            A.add(i);
+        }
+
+
+        int m = read.nextInt(); 
+
+        for (int i = 0; i < m; i++){
+            int r = read.nextInt(); 
+
+            for(int j=2; j<=A.size(); j++) {
+                if( j%r == 0) {
+                    A.set(j-1, SENTINEL);
+                }
+            }
+
+
+            for (int j = 0; j < A.size(); j++){
+                if (A.get(j) == SENTINEL){
+                    A.remove(j--);
+                }
+            }
+        }
+
+        for (int x = 0; x < A.size(); x++){
+            System.out.println(A.get(x));
+        }
+    }
+}
