@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        int a = read.nextInt();
+        int b = read.nextInt(); 
+        System.out.println(checkDate(a,b));
+    }
+
+    public static String checkDate (int a, int b){
+        if (a > 2){
+            return "After";
+        }else if (a < 2){
+           return "Before";
+        }else {
+           if (b > 18){
+                return "After";
+            }else if (b < 18){
+                return "Before";
+            }else{
+                return "Special";
+            }
+        }
+    }
+}
