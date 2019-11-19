@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        int a = read.nextInt();
+        int b = read.nextInt(); 
+        System.out.println(answer(a,b));
+    }
+    
+    public static int answer (int x, int y){
+        int count = 0;
+        for (int i = 0; i <= y; i++){
+        count += x;
+        x *= 10;
+        }
+        return count;
+    }
+}
