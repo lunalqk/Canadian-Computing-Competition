@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+     public static void main(String[] args){
+          Scanner read = new Scanner(System.in);
+          String a = read.nextLine(); 
+          int count = 0;
+
+          for (int i = 0; i < a.length(); i++){
+              for (int j = i+1; j <= a.length(); j++){
+                  int length = j - i;
+                  if (check(a.substring(i,j)) == true && length > count){
+                      count = length; 
+                  }
+              }
+          }
+          System.out.println(count);
+     }
+
+    public static boolean check (String a){
+        for (int k = 0; k < a.length(); k++){
+            if(a.charAt(k) != a.charAt(a.length()-1-k)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
