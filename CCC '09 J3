@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+        int a = read.nextInt();
+
+        int b = h2m(a);
+
+        System.out.println(a + " in Ottawa");
+        
+        if (b - h2m(300) < 0){
+            int c = m2h( h2m(2400) - (h2m(300) - b) );
+            System.out.println(c + " in Victoria");
+        }else{
+            System.out.println(m2h ( b - h2m(300) ) + " in Victoria");
+        }
+
+        if (b - h2m(200) < 0){
+            int c = m2h( h2m(2400) - (h2m(200) - b) );
+            System.out.println(c + " in Edmonton");
+        }else{
+            System.out.println(m2h ( b - h2m(200))  + " in Edmonton");
+        }
+
+        if (b - h2m(100) < 0){
+            int c = m2h( h2m(2400) - (h2m(100) - b) );
+            System.out.println(c + " in Winnipeg");
+        }else{
+            System.out.println(m2h ( b - h2m(100))  + " in Winnipeg");
+        }
+
+        System.out.println(a + " in Toronto");
+
+        if (b + h2m(100) >= h2m(2400) ){
+            int c = m2h( h2m(100) - h2m(2400) + b);
+            System.out.println(c + " in Halifax");
+        }else{
+            System.out.println(m2h ( b + h2m(100))  + " in Halifax");
+        }
+
+        if (b + h2m(130) >= h2m(2400) ){
+            int c =  m2h( h2m(130) - h2m(2400) + b);
+            System.out.println(c + " in St. John's");
+        }else{
+            System.out.println(m2h ( b + h2m(130)) + " in St. John's");
+        }
+    }
+
+    public static int h2m(int hr) {
+        int h = hr / 100;
+        int m = hr % 100;
+        return h * 60 + m;
+    }
+
+    public static int m2h(int min) {
+        int h = min / 60;
+        int m = min % 60;
+        return h * 100 + m;
+    }
+}
