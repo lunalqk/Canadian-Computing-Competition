@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+
+        int a;
+        while((a = read.nextInt()) != 0){
+            int[] temps = new int[a];
+            for(int i = 0; i < a; i++) {
+                temps[i] = read.nextInt();
+            }
+            int[] diff = new int[a-1];
+            for (int i = 0; i < a-1; i++){
+                diff[i] = temps[i+1] - temps[i];
+            }
+
+            System.out.println(minLength(diff));
+        }
+
+       
+    }
+
+    //a = {1,2,-2,1,2,-2}
+    //a = 1,2,1,2,1,2
+    public static int minLength(int[] a){
+        int l = a.length;
+        
+        for(int minL=1; minL<=l; minL++) {
+            boolean isPattern = true;
+
+            for(int j=0; j<minL; j++) {
+                int firstElement = a[j];
+                for(int i=j; i<l; i=i+minL) {
+                    if(a[i] != firstElement) {
+                        isPattern = false;
+                    }
+                }
+            }
+
+            if(isPattern) {
+                return minL;
+            }
+
+        }
+        return l;
+    }
+}
