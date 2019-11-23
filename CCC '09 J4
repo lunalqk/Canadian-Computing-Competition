@@ -1,0 +1,75 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+        int a = read.nextInt();
+        ArrayList<String> andrew = new ArrayList<String>();
+
+        andrew.add("WELCOME");
+        andrew.add("TO");
+        andrew.add("CCC");
+        andrew.add("GOOD");
+        andrew.add("LUCK");
+        andrew.add("TODAY");
+
+    
+       while (andrew.size() > 0){
+           String l = "";
+            
+            //append
+            int count = 1;
+
+            l += andrew.get(0);
+            andrew.remove(0);
+            
+            //algorithm
+            while(andrew.size() > 0 && l.length() + 1 + andrew.get(0).length() <= a){
+                l += ".";
+                l += andrew.get(0);
+                andrew.remove(0); 
+                count++;
+            }
+
+            if(count==1) {
+                if(l.length() + 1 <= a) {
+                    l+=".";
+                }
+            }
+
+            l = addDots(l, a);
+            //add dots
+            System.out.println(l);
+       
+       }       
+
+    }
+
+    public static String addDots (String z, int b){
+        z = z+" ";
+        b++;
+        while (z.length() < b){
+            //find the dot
+
+            for (int i = 0; i < z.length(); i++){
+                if(z.length() >= b) {
+                    break;
+                }
+
+                char ele = z.charAt(i);
+                if (ele == '.'){
+                    z = z.substring(0,i+1) + "." + z.substring(i+1);
+                    while(ele == '.') {
+                        i++;
+                        ele = z.charAt(i);
+                    }
+                }
+            }
+
+            
+        }
+        return z.substring(0,z.length()-1);
+    }
+
+}
