@@ -1,0 +1,120 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+
+        int x1 = read.nextInt();
+        int y1 = read.nextInt();
+        int x2 = read.nextInt();
+        int y2 = read.nextInt();
+
+        Coor s = new Coor(x1,y1);
+        Coor e = new Coor(x2,y2);
+
+        int a = BFS (s, e);
+        System.out.println(a);
+    }
+
+
+    public static int BFS(Coor s, Coor e){
+        Queue<List<Coor>> q = new LinkedList<>();  
+        List<Coor> path = new ArrayList<>(); 
+
+        path.add(s);
+        q.add(path);
+
+        while(!q.isEmpty()){
+            List<Coor> currPath = q.poll();
+			Coor curr = currPath.get(currPath.size() - 1); 
+         
+            
+
+            //System.out.println("CurrPath: " + currPath);
+            //System.out.println("Curr: " + curr);
+            if(curr.equals(e)) {
+				return currPath.size() - 1;
+			}
+
+
+            for (Coor i: curr.possibleMoves()){
+                //create a new path with the existing i
+
+                List<Coor> nextPath = new ArrayList<>(currPath);
+				nextPath.add(i);
+
+                q.add(nextPath);
+                //System.out.println("Added: " + nextPath);
+            }
+            
+            //System.out.println();
+        }
+        return -1;
+    }
+}
+
+
+class Coor{
+	public int x;
+	public int y;
+
+	public Coor(int q, int w) {
+		x = q;
+		y = w;
+	}
+
+    public String toString() {
+		return "(" + x + "," + y + ")";
+	}
+
+    public boolean Valid(){
+        return (x > 0 && x <= 8) && (y > 0 && y <= 8);
+    }
+
+    public boolean equals (Coor g){
+        return g.x == x && g.y == y; 
+    }
+
+    public ArrayList<Coor> possibleMoves(){
+        ArrayList<Coor> possibleMoves =new ArrayList<Coor>();
+        
+        Coor temp; 
+
+        temp = new Coor(x+1, y+2);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x+2, y+1);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x-1, y+2);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x+1, y-2);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x-1, y-2);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x-2, y-1);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x-2, y+1);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+        temp = new Coor(x+2, y-1);
+        if (temp.Valid() == true){
+            possibleMoves.add(temp);
+        }
+
+        return possibleMoves;
+    }
+}
