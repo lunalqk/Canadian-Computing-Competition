@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+
+
+        ArrayList<String> c =new ArrayList<String>();  
+        c.add("-");
+        c.add("");
+        c.add("abc");
+        c.add("def");
+        c.add("ghi");
+        c.add("jkl");
+        c.add("mno");
+        c.add("pqrs");
+        c.add("tuv");
+        c.add("wxyz");
+
+        //System.out.println(c);
+
+        while (true){
+            String s = read.nextLine();
+            if(s.equals("halt")){
+                break;
+            }
+
+            int count = 0;
+            int prev = -1;
+            for (int i = 0; i < s.length(); i++){
+                String element = s.substring(i,i+1);
+
+                int keyNum = getButton(element, c);
+                count += getNumberOfPress(element, c);
+
+                if (prev == keyNum){
+                    count += 2;
+                }
+
+                prev = keyNum;
+            }
+
+            System.out.println(count);
+       }
+    }
+
+    public static int getButton(String z, ArrayList<String> x){
+        for (int i = 0; i < x.size(); i++){
+            String element = x.get(i);
+
+            if(element.indexOf(z) >= 0){
+                return i;
+            }
+        }
+        return 11;
+    }
+
+    public static int getNumberOfPress(String z, ArrayList<String> x){
+         for (int i = 0; i < x.size(); i++){
+            String element = x.get(i);
+
+            if(element.indexOf(z) >= 0){
+                return element.indexOf(z) + 1;
+            }
+        }
+        return 0;
+    }
+
+}
