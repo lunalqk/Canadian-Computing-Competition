@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+
+        int n = read.nextInt();
+
+        ArrayList<Integer> streams = new ArrayList<Integer>(); 
+
+        for (int i = 0; i < n; i++){
+            streams.add(read.nextInt());
+        }
+        
+
+        while(true){
+            int a = read.nextInt(); 
+            if (a == 99){
+                int index = read.nextInt();
+                int amount = read.nextInt();
+
+                int la = (int)(streams.get(index-1) * (amount/100.0));
+
+                int ra = streams.get(index-1) - la;
+
+                streams.add(index-1, la);
+                streams.set(index, ra);
+            }else if (a == 88){
+                int num = read.nextInt();
+
+                int fa = streams.get(num-1) + streams.get(num);
+
+                streams.remove(num);
+                streams.set(num-1, fa);
+            }else if (a == 77){
+                break;
+            }        
+        }
+
+            for (int i = 0; i < streams.size(); i++){
+                System.out.print(streams.get(i) + " ");
+            }
+        
+        
+    }
+}
