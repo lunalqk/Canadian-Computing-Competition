@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+
+        String a = read.nextLine();
+        String w = read.nextLine();
+
+        String nw = "";
+        for(int i = 0; i < w.length(); i++){
+            char s = w.charAt(i);
+            if (isAlpha(s) == true){
+                nw += s;
+            }
+        }
+
+        String ans = "";
+
+        int count = 0;
+        for(int i = 0; i < nw.length(); i++){
+            
+            //System.out.println(count);
+            int inc = (int) a.charAt(count) - 65;
+
+            ans += shift(nw.charAt(i),inc);
+
+            count++;
+            count = count%a.length();
+        }
+
+        System.out.println(ans);
+    }
+
+
+    public static boolean isAlpha (char z){
+        return ((int)z >= 65 && (int)z <= 90); 
+    }  
+
+    public static char shift (char c, int inc){
+        if ((int)c + inc > 90){
+            int v = (int)c + inc - 26;
+            return (char)v;
+        }else{
+            return (char)((int)c + inc);
+        }
+    }
+
+}
