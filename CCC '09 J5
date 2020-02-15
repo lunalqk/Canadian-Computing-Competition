@@ -1,0 +1,263 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static Map<Integer, Friends> net;
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+        net = getList();
+        while(true){
+            char temp = read.next().charAt(0);
+
+            if (temp == 'i'){
+                int f1 = read.nextInt();
+                int f2 = read.nextInt();
+
+                Friends Zeki = net.get(f1);
+                if(Zeki == null){
+                    Zeki=new Friends(f1);
+                    net.put(f1, Zeki);
+                }
+                Zeki.addFriend(f2);
+
+                Friends Luna = net.get(f2);
+                if(Luna == null){
+                    Luna=new Friends(f2);
+                    net.put(f2, Luna);
+                }
+                Luna.addFriend(f1);
+            }else if (temp == 'd'){
+                int f1 = read.nextInt();
+                int f2 = read.nextInt();
+                Friends Zeki = net.get(f1);
+                if(Zeki != null){
+                    Zeki.deleteFriend(f2);
+                }
+    
+                Friends Luna = net.get(f2);
+                if(Luna != null){
+                    Luna.deleteFriend(f1);
+                }
+            }else if (temp == 'n'){
+                int f = read.nextInt();
+                
+                Friends qwert = net.get(f);
+                if (qwert == null){
+                    System.out.println(0);
+                }else{
+                    int a = qwert.q.size();
+                    System.out.println(a);
+                }
+            }else if (temp == 'f'){
+                int k = read.nextInt();
+                int c = 0;
+
+                Set<Integer> numf = new HashSet<Integer>();
+                Friends Jessica = net.get(k);
+
+                if(Jessica == null){
+                    System.out.println(0);
+                }else{
+                    for (int i = 0; i < Jessica.q.size(); i++){
+                            int t = Jessica.q.get(i);
+                            Friends asdf = net.get(t);
+                            numf.add(t);
+                        for (int j = 0; j < asdf.q.size() ; j++){
+                            numf.add(asdf.q.get(j));
+                            //System.out.println(numf); 
+                            //System.out.println(asdf);
+                        }
+                    } 
+                }
+                //System.out.println(numf);
+                c = numf.size()-1-Jessica.q.size();
+                System.out.println(c);
+            }else if (temp == 's'){
+                int f1 = read.nextInt();
+                int f2 = read.nextInt();
+                Friends Chanel = net.get(f1);
+                Friends Dior = net.get(f2); 
+
+                if (Chanel == null || Dior == null){
+                    System.out.println("Not connected");
+                }else{
+                    int zxcv = BFS (Chanel, Dior);
+
+                    if (zxcv < 0){
+                        System.out.println("Not connected");
+                    }else{
+                        System.out.println(zxcv);
+                    }
+                }
+            }else if (temp == 'q'){
+                break;
+            }
+        }
+
+    }
+
+     public static Map<Integer, Friends> getList (){
+        Map<Integer, Friends> f = new HashMap<>();
+
+        Friends Chris = new Friends(1);
+        Chris.addFriend(6);
+        f.put(1, Chris);
+
+        Friends Bruce = new Friends(2);
+        Bruce.addFriend(6);
+        f.put(2, Bruce);
+
+        Friends Zoey = new Friends(3);
+        Zoey.addFriend(15);
+        Zoey.addFriend(4);
+        Zoey.addFriend(6); 
+        Zoey.addFriend(5);
+        f.put(3,Zoey);
+
+        Friends Stephen = new Friends(4);
+        Stephen.addFriend(3);
+        Stephen.addFriend(6);
+        Stephen.addFriend(5);
+        f.put(4, Stephen);
+
+        Friends Natalie = new Friends(5);
+        Natalie.addFriend(3);
+        Natalie.addFriend(4);
+        Natalie.addFriend(6);
+        f.put(5,Natalie);
+
+        Friends Abby = new Friends(6);
+        Abby.addFriend(1);
+        Abby.addFriend(2);
+        Abby.addFriend(3);
+        Abby.addFriend(4);
+        Abby.addFriend(5);
+        Abby.addFriend(7);
+        f.put(6, Abby);
+
+        Friends George = new Friends(7);
+        George.addFriend(6);
+        George.addFriend(8);
+        f.put(7,George);
+
+        Friends Ali = new Friends(8);
+        Ali.addFriend(7);
+        Ali.addFriend(9);
+        f.put(8,Ali);
+
+        Friends Kara = new Friends(9); 
+        Kara.addFriend(8);
+        Kara.addFriend(10);
+        f.put(9,Kara);
+
+        Friends Nomar = new Friends(10);
+        Nomar.addFriend(9);
+        Nomar.addFriend(11);
+        f.put(10, Nomar);
+
+        Friends Siobahn = new Friends(11);
+        Siobahn.addFriend(10);
+        Siobahn.addFriend(12);
+        f.put(11, Siobahn);
+
+        Friends Ricardo = new Friends(12);
+        Ricardo.addFriend(9);
+        Ricardo.addFriend(11);
+        Ricardo.addFriend(13);
+        f.put(12, Ricardo);
+
+        Friends Jeff = new Friends(13);
+        Jeff.addFriend(12);
+        Jeff.addFriend(15);
+        Jeff.addFriend(14);
+        f.put(13, Jeff);
+
+        Friends Terry = new Friends(14);
+        Terry.addFriend(13);
+        f.put(14, Terry);
+
+        Friends Alberto = new Friends(15);
+        Alberto.addFriend(3);
+        Alberto.addFriend(13);
+        f.put(15, Alberto);
+
+        Friends Kim = new Friends(16);
+        Kim.addFriend(18);
+        Kim.addFriend(17);
+        f.put(16, Kim);
+
+        Friends Richard = new Friends(17);
+        Richard.addFriend(16);
+        Richard.addFriend(18);
+        f.put(17,Richard);
+
+        Friends Trevor = new Friends(18);
+        Trevor.addFriend(16);
+        Trevor.addFriend(17);
+        f.put(18,Trevor);
+
+        return f;
+    }
+
+    public static int BFS(Friends a, Friends b){
+        Queue<List <Friends> > q = new LinkedList<>();
+
+        Set<Integer> visited = new HashSet<>();
+
+        List<Friends> pathToFriend = new ArrayList<>();
+        pathToFriend.add(a);
+
+        q.add(pathToFriend);
+
+        while(!q.isEmpty()){
+            pathToFriend = q.poll();
+            Friends curr = pathToFriend.get(pathToFriend.size()-1); 
+
+            if (curr.a == b.a){
+                return pathToFriend.size() - 1;
+            }
+
+            for (int i : curr.q){
+
+                if (!visited.contains(i)){
+                    visited.add(i);
+
+                    List<Friends> pathToNextF = new ArrayList<>(pathToFriend);
+                	pathToNextF.add(net.get(i));
+                	q.add(pathToNextF);
+                }
+            }
+
+        }
+
+        return -1;
+    }
+}
+
+class Friends{
+    public int a;
+    public ArrayList<Integer> q;
+
+    public Friends (int z){
+         a = z;
+         q = new ArrayList<Integer>();
+    }  
+
+    public void addFriend(int a){
+        if (!q.contains(a)){
+            q.add(a);
+        }
+    }
+
+    public void deleteFriend(int a){
+        for (int i = 0; i < q.size(); i++){
+            if (q.get(i) == a){
+                q.remove(i);
+            }
+        }
+    }
+
+    public String toString() {
+		return "(" + a + ":" + q + ")";
+	}
+}
