@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in); 
+        ArrayList<Character> a;
+        ArrayList<Character> b; 
+        a = insert(read.nextLine());
+        b = insert(read.nextLine()); 
+
+        boolean bleh = true;
+
+        if (a.size() != b.size()){
+            bleh = false;
+        }
+
+        for(int i = 0; i < a.size(); i++){
+            if(b.contains(a.get(i)) == true){
+                for (int j = 0; j < b.size(); j++){
+                    if(b.get(j) == a.get(i)){
+                        b.remove(j);
+                        a.remove(i);
+                    }
+                }
+                i--;
+            }else{
+                bleh = false;
+                break;
+            }
+
+        }
+        
+        if(bleh == true){
+            System.out.println("Is an anagram.");
+        }else{
+            System.out.println("Is not an anagram.");
+        }
+        
+        
+    } 
+
+    public static ArrayList<Character> insert(String a){
+        ArrayList<Character> z = new ArrayList<Character>();
+        char x = 'a';
+        for (int i = 0; i < a.length(); i++){
+            if (a.charAt(i) != ' '){
+                z.add(a.charAt(i));
+            }
+        }
+        return z;
+    }
+
+}
