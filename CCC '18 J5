@@ -1,0 +1,158 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	public static int numberOfPages = 0;
+
+	public static void main(String[] args) {
+		FastReader r = new FastReader();
+
+		numberOfPages = r.nextInt();
+
+		//Page[] book = new Page[10001];
+		Map<Integer, Page> book = new HashMap<>();
+
+		for(int i=1; i<=numberOfPages; i++) {
+			int numberOfOptions = r.nextInt();
+
+			Page pg = new Page(i);
+
+			for(int j=0; j<numberOfOptions; j++) {
+				int eachOption = r.nextInt();
+
+				pg.addOptions(eachOption);
+			}
+
+			//book[i] = pg;
+			book.put(i, pg);
+		}
+
+		//System.out.println(book);
+
+		BFS(book);
+	}	
+
+	public static void BFS(Map<Integer, Page> m) { //Page[] m
+		int shortest = Integer.MAX_VALUE;
+	
+		List<Page> path = new ArrayList<>();
+
+		Queue< List<Page> > q = new LinkedList<>();
+		Set<Integer> visited = new HashSet<>();
+
+		//create the first path
+		path.add(m.get(1));
+		visited.add(1);
+
+		//1. add the root
+		q.add( path );
+		
+		//2. loop until q empty
+		while( !q.isEmpty() ) {
+			//a. dequeue
+			List<Page> currPath = q.poll();
+			Page curr = currPath.get(currPath.size() - 1);
+
+			if(curr.isEnd()) {
+				shortest = Math.min(shortest, currPath.size());
+			}
+
+			//System.out.println("currpath: "+currPath);
+			//System.out.println("currpage: " + curr);
+			//System.out.println("visited set: " + visited);
+
+			//b. add children
+			for(int i=0; i<curr.options.size(); i++) {
+				int opt = curr.options.get(i);
+
+				if(!visited.contains(opt)) {
+					visited.add(opt);
+
+					List<Page> nextPath = new ArrayList<>(currPath);
+					nextPath.add( m.get(opt) );
+
+					q.add( nextPath );
+					//System.out.println("Added to q: " + opt);
+				}
+			
+			}
+
+			//System.out.println();
+		}
+
+		if(visited.size() == numberOfPages) {
+			System.out.println("Y");
+		}else{
+			System.out.println("N");
+		}
+		System.out.println(shortest);
+	}
+}
+
+class Page {
+	public int pageNum;
+	public List<Integer> options;
+
+	public Page(int n) {
+		pageNum = n;
+		options = new ArrayList<>();
+	}
+
+	public boolean isEnd() {
+		return options.size() == 0;
+	}
+
+	public void addOptions(int n) {
+		options.add(n);
+	}
+
+	public String toString() {
+		return "" + pageNum + " " + options;
+	}
+}
+
+
+
+class FastReader { 
+	BufferedReader br; 
+	StringTokenizer st; 
+
+	public FastReader() { 
+		br = new BufferedReader(new InputStreamReader(System.in)); 
+	} 
+
+	public String next() { 
+		while (st == null || !st.hasMoreElements()) { 
+			try { 
+				st = new StringTokenizer(br.readLine()); 
+			} 
+			catch (IOException  e) { 
+				e.printStackTrace(); 
+			} 
+		}
+		return st.nextToken(); 
+	} 
+
+	public int nextInt() { 
+		return Integer.parseInt(next()); 
+	} 
+
+	public long nextLong() { 
+		return Long.parseLong(next()); 
+	} 
+
+	public double nextDouble() { 
+		return Double.parseDouble(next()); 
+	} 
+
+	public String nextLine() { 
+		String str = ""; 
+		try	{ 
+			str = br.readLine(); 
+		} 
+		catch (IOException e) { 
+			e.printStackTrace(); 
+		} 
+		return str; 
+	} 
+}
